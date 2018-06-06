@@ -53,6 +53,8 @@ public:
 
     virtual double estimate_price(double x) = 0;
 
+    /// Retrieves a vector with the day count fractions between payments
+    /// \return the vector with the day count fractions
     std::vector<double> getDayCountFractionVector() {
         std::vector<double> dayCountFractionVector{};
 
@@ -66,10 +68,11 @@ public:
 
     std::vector<double> getDiscountFactors(std::vector<double> dayCountFractionVector) {
         std::vector<double> discountFactors{};
+        discountFactors.reserve(dayCountFractionVector.size());
         for (int i = 0; i < dayCountFractionVector.size(); ++i) {
-            discountFactors.emplace_back(continuous_discount_factor(dayCountFractionVector.at(i),
-                                                                   m_zeroCouponCurve.getRateFromDateString(
-                                                                           m_payingDates.at(i))));
+            discountFactors.emplace_back(continuous_discount_factor(
+                                                                   m_zeroCouponCurve.getRateFromDateString(m_payingDates.at(i)),
+                                                                   dayCountFractionVector.at(i)));
         }
 
         return discountFactors;
@@ -82,7 +85,8 @@ public:
 
         for (int i = 0; i < dayCountFractionVector.size(); ++i) {
             currentPeriodFraction += dayCountFractionVector.at(i);
-            totalDiscountedValue += continuous_discount(legCashFlows.at(i), legDiscountFactors.at(i), currentPeriodFraction);
+            totalDiscountedValue += discount_continuously(legCashFlows.at(i), legDiscountFactors.at(i),
+                                                          currentPeriodFraction);
         }
         return totalDiscountedValue;
     }

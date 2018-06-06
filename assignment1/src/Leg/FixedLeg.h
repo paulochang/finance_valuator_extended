@@ -6,6 +6,7 @@
 #define SQF_FIXEDLEG_H
 
 #include "Leg.h"
+#include <utility>
 
 //Clase que implementa una pata fijado
 class FixedLeg : public Leg {
@@ -16,7 +17,7 @@ public:
     FixedLeg(double notional, double rate, std::vector<boost::gregorian::date> referenceDates,
              DayCountCalculator &dayCalculator, ZeroCouponCurve &zeroCouponCurve)
             :
-            Leg(notional, rate, referenceDates, dayCalculator, zeroCouponCurve) {}
+            Leg(notional, rate, std::move(referenceDates), dayCalculator, zeroCouponCurve) {}
 
     //Metodo para calcular el precio en un pata fija
     double price() override;

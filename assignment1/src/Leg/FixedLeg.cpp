@@ -10,6 +10,8 @@
 
 std::vector<double> FixedLeg::getLegCashFlows(std::vector<double> dayCountFractionVector){
     std::vector<double> legCashFlows{};
+
+    legCashFlows.reserve(dayCountFractionVector.size());
     for (auto currentFraction : dayCountFractionVector)
         legCashFlows.emplace_back(m_rate * currentFraction * m_notional);
     return legCashFlows;
@@ -18,9 +20,11 @@ std::vector<double> FixedLeg::getLegCashFlows(std::vector<double> dayCountFracti
 //Clase FixedLeg
 double FixedLeg::price() {
 
+    // TESTED
     //Generate day count fraction vector
     std::vector<double> dayCountFractionVector{getDayCountFractionVector()};
 
+    // TESTED
     //Calculate the legCashFlows
     std::vector<double> legCashFlows{getLegCashFlows(dayCountFractionVector)};
 
@@ -38,6 +42,7 @@ double FixedLeg::estimate_price(double interestRate) {
     std::vector<double> dayCountFractionVector{getDayCountFractionVector()};
 
     std::vector<double> legCashFlows{};
+    legCashFlows.reserve(dayCountFractionVector.size());
     for (auto currentFraction : dayCountFractionVector)
         legCashFlows.emplace_back(interestRate * currentFraction * m_notional);
 
