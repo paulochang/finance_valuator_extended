@@ -20,10 +20,9 @@
 
  //Calculamos el incremento d periodo (si es 1 o menor se toma el periodo principal)
  double pIncrement = (sPeriods <= 1) ? mPeriod : ((double)mPeriod / (double)sPeriods);
- /*
-  * Calculamos el numero de subperiodos totales
-  * Los periodos deben ser exactos, en caso contrario se emite error
-  */
+ //Calculamos el numero de subperiodos totales
+ //Los periodos deben ser exactos, en caso contrario se emite error
+ */
 /*
   if(std::fmod(tPPeriods, pIncrement) != 0){
   std::cerr << "El numero de periodos debe ser proporcional al periodo total del bono: " << 

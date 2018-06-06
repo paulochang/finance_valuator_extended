@@ -18,7 +18,7 @@ public:
     FloatingLeg(double notional, double rates, std::vector<boost::gregorian::date> referenceDates,
                 DayCountCalculator &dayCalculator, ZeroCouponCurve &zeroCouponCurve,  ZeroCouponCurve index) :
             Leg(notional, rates, std::move(referenceDates), dayCalculator, zeroCouponCurve) {
-        m_index = index;
+        m_index = std::move(index);
     }
 
     //Metodo para calcular el precio en un pata fija
