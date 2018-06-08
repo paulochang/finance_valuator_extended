@@ -1,6 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <vector>
 
 /// Computes the discount factor corresponding to a given annual rate if discounted for a given number of years
 /// and interests are being calculated once per year
@@ -89,5 +90,10 @@ double annual_to_continuous_rate(int periods_per_year, double annual_rate);
 /// \param continuous_rate the original yearly rate
 /// \return the annual_rate given the amount of periods per year defined
 double continuous_to_annual_rate(int periods_per_year, double continuous_rate);
+
+/// Creates a cummulative vector with the totalDayCountFraction till a certain point
+/// \param dayCountFractionVector the dayCountFraction vector
+/// \return the cummulated dayCountFractionVector
+std::vector<double> getTotalDayCountFractionVector(std::vector<double> dayCountFractionVector);
 
 #endif 
