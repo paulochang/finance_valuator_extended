@@ -22,7 +22,6 @@
 
 //Clase prinbcipal
 
-
 class Leg {
 protected:
     double m_notional;
@@ -55,41 +54,12 @@ public:
 
     /// Retrieves a vector with the day count fractions between payments
     /// \return the vector with the day count fractions
-    std::vector<double> getDayCountFractionVector() {
-        std::vector<double> dayCountFractionVector{};
+    std::vector<double> getDayCountFractionVector();
 
-        for (unsigned int i = 1; i < m_payingDates.size(); i++) {
-            double dayCountFraction = m_dayCalculator.getDayRatio(m_payingDates.at(i - 1), m_payingDates.at(i));
-            dayCountFractionVector.emplace_back(dayCountFraction);
-        }
-
-        return dayCountFractionVector;
-    }
-
-    std::vector<double> getDiscountFactors(std::vector<double> dayCountFractionVector) {
-        std::vector<double> discountFactors{};
-        discountFactors.reserve(dayCountFractionVector.size());
-        for (int i = 0; i < dayCountFractionVector.size(); ++i) {
-            discountFactors.emplace_back(continuous_discount_factor(
-                                                                   m_zeroCouponCurve.getRateFromDateString(m_payingDates.at(i)),
-                                                                   dayCountFractionVector.at(i)));
-        }
-
-        return discountFactors;
-    }
+    std::vector<double> getDiscountFactors(std::vector<double> dayCountFractionVector);
 
     double getDiscountedValue(std::vector<double> &dayCountFractionVector, std::vector<double> &legDiscountFactors,
-                              std::vector<double> &legCashFlows) {
-        double totalDiscountedValue = 0.0;
-        double currentPeriodFraction = 0.0;
-
-        for (int i = 0; i < dayCountFractionVector.size(); ++i) {
-            currentPeriodFraction += dayCountFractionVector.at(i);
-            totalDiscountedValue += discount_continuously(legCashFlows.at(i), legDiscountFactors.at(i),
-                                                          currentPeriodFraction);
-        }
-        return totalDiscountedValue;
-    }
+                              std::vector<double> &legCashFlows);
 };
 
 #endif
