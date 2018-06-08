@@ -3,6 +3,8 @@
 #include <boost/test/unit_test.hpp>
 #include <Utils/utils.h>
 
+namespace utf = boost::unit_test;
+
 BOOST_AUTO_TEST_SUITE(utils_boost)
 
     BOOST_AUTO_TEST_CASE(annual_cap1) {
@@ -91,6 +93,7 @@ BOOST_AUTO_TEST_SUITE(utils_boost)
         BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
         BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-8));
     }
+
     BOOST_AUTO_TEST_CASE(continuous_discount1) {
         BOOST_TEST_MESSAGE("Testing continuous_discount1");
         BOOST_TEST_MESSAGE("using tolerances within checks.");
@@ -130,18 +133,18 @@ BOOST_AUTO_TEST_SUITE(utils_boost)
 
     BOOST_AUTO_TEST_CASE(annual_to_cont1) {
         BOOST_TEST_MESSAGE("Testing annual_to_cont1");
-            BOOST_TEST_MESSAGE("using tolerances within checks.");
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
 
-            double annual_rate = 0.12;
+        double annual_rate = 0.12;
 
-            double theoretical_value = 0.1133286853; // ln(1.12)
+        double theoretical_value = 0.1133286853; // ln(1.12)
 
-            auto calculated_value = annual_to_continuous_rate(1, annual_rate);
+        auto calculated_value = annual_to_continuous_rate(1, annual_rate);
 
-            BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
-            BOOST_TEST_MESSAGE(" - known_fwd_rate: " << theoretical_value);
-            BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
-            BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-10));
+        BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
+        BOOST_TEST_MESSAGE(" - known_fwd_rate: " << theoretical_value);
+        BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
+        BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-10));
     }
 
     BOOST_AUTO_TEST_CASE(cont_to_annual) {
@@ -158,6 +161,22 @@ BOOST_AUTO_TEST_SUITE(utils_boost)
         BOOST_TEST_MESSAGE(" - known_fwd_rate: " << theoretical_value);
         BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
         BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-9));
+    }
+
+    BOOST_AUTO_TEST_CASE(total_day_count, *utf::tolerance(0.0001)) {
+        BOOST_TEST_MESSAGE("Testing cont_to_annual");
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
+
+        double myDoubles[] = {185.0 / 360, 182.0 / 360, 182.0 / 360, 182.0 / 360};
+        std::vector<double> dayCountFractionVector(myDoubles, myDoubles + sizeof(myDoubles) / sizeof(double));
+
+        std::vector<double> calculated_values = getTotalDayCountFractionVector(dayCountFractionVector);
+
+        double myResults[] = {0.513888888889, 1.019444444444, 1.525000000000, 2.030555555556};
+        std::vector<double> expected_values(myResults, myResults + sizeof(myResults) / sizeof(double));
+
+        BOOST_TEST(calculated_values == expected_values, boost::test_tools::per_element());
+
     }
 
 

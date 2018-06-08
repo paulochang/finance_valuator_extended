@@ -35,19 +35,19 @@ double discount_continuously(double amount, double continuous_rate, double years
 }
 
 double annual_capitalization(double amount, double annual_rate, double years) {
-    double capitalization_rate = 1.0/annual_discount_factor(annual_rate, years);
+    double capitalization_rate = 1.0 / annual_discount_factor(annual_rate, years);
     double result = amount * capitalization_rate;
     return result;
 }
 
 double period_capitalization(double amount, double annual_rate, int periods_per_year, double years) {
-    double capitalization_rate = 1.0/period_discount_factor(annual_rate, periods_per_year, years);
+    double capitalization_rate = 1.0 / period_discount_factor(annual_rate, periods_per_year, years);
     double result = amount * capitalization_rate;
     return result;
 }
 
 double continuous_capitalization(double amount, double continuous_rate, double years) {
-    double capitalization_rate = 1.0/continuous_discount_factor(continuous_rate, years);
+    double capitalization_rate = 1.0 / continuous_discount_factor(continuous_rate, years);
     double result = amount * capitalization_rate;
     return result;
 }
@@ -64,4 +64,16 @@ double annual_to_continuous_rate(int periods_per_year, double annual_rate) {
 
 double continuous_to_annual_rate(int periods_per_year, double continuous_rate) {
     return periods_per_year * (exp(continuous_rate / periods_per_year) - 1);
+}
+
+std::vector<double> getTotalDayCountFractionVector(std::vector<double> dayCountFractionVector) {
+    std::vector<double> totalDayCountFractionVector{};
+    totalDayCountFractionVector.reserve(dayCountFractionVector.size() - 1);
+    double cummulator = 0.0;
+    for (unsigned int i = 0; i < dayCountFractionVector.size(); i++) {
+        cummulator += dayCountFractionVector.at(i);
+        totalDayCountFractionVector.emplace_back(cummulator);
+    }
+
+    return totalDayCountFractionVector;
 }
