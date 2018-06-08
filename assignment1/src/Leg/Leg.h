@@ -54,12 +54,13 @@ public:
 
     /// Retrieves a vector with the day count fractions between payments
     /// \return the vector with the day count fractions
-    std::vector<double> getDayCountFractionVector();
+    const std::vector<double> getDayCountFractionVector() const;
 
-    std::vector<double> getDiscountFactors(std::vector<double> dayCountFractionVector);
+    const std::vector<double> getDiscountFactors(std::vector<double> dayCountFractionVector) const;
 
-    double getDiscountedValue(std::vector<double> &dayCountFractionVector, std::vector<double> &legDiscountFactors,
-                              std::vector<double> &legCashFlows);
+    const double
+    getDiscountedValue(std::vector<double> &dayCountFractionVector, std::vector<double> &legDiscountFactors,
+                       std::vector<double> &legCashFlows) const;
 };
 
 #endif

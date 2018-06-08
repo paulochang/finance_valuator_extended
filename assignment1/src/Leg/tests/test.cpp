@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
         FixedLeg myLeg{notional, rate, referenceDates, actualCalc, zeroCouponCurve};
         std::vector<double> calculated_values = myLeg.getDayCountFractionVector();
 
-        double myDoubles[] = {0.513888888, 0.505555555, 0.505555555, 0.505555555};
+        double myDoubles[] = {185.0 / 360, 182.0 / 360, 182.0 / 360, 182.0 / 360};
         std::vector<double> expected_values(myDoubles, myDoubles + sizeof(myDoubles) / sizeof(double));
 
 
@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
 
         FixedLeg myLeg{notional, rate, referenceDates, actualCalc, zeroCouponCurve};
 
-        double myDoubles[] = {0.51388888888, 0.505555555555, 0.505555555555, 0.505555555555};
+        double myDoubles[] = {185.0 / 360, 182.0 / 360, 182.0 / 360, 182.0 / 360};
         std::vector<double> dayCountFractionVector(myDoubles, myDoubles + sizeof(myDoubles) / sizeof(double));
 
         std::vector<double> calculated_values = myLeg.getLegCashFlows(dayCountFractionVector);
