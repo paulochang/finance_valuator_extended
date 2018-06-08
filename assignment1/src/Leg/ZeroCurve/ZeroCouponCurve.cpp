@@ -14,7 +14,4 @@ double ZeroCouponCurve::getRateFromDateString(boost::gregorian::date date) const
     return NAN;
 }
 
-//getRateFromDateString - ZeroCouponCurve
-double ZeroCouponCurve::getRateFromDateString(std::string &date) const {
-    return getRateFromDateString(boost::gregorian::from_string(date));
 }

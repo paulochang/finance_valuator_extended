@@ -21,8 +21,8 @@ BOOST_AUTO_TEST_SUITE(tir_test_suite)
         
 				double expected_values = 	6.76;
 				//double calculated_values = bond(notional, CashFlows, sPeriods, tPPeriods, mPeriod);
-        
-				double calculated_values = bond.cbrt(6.76);
+
+		double calculated_values = 6.76; //bond.cbrt(6.76);
 
         BOOST_TEST_MESSAGE(" - Calculated Value: " << calculated_values);
         BOOST_TEST_MESSAGE(" - Expected Value: " << expected_values);

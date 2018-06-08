@@ -8,12 +8,12 @@
  */
 
 
- //TODO: Implement actual floating cash flow
+//TODO: Implement actual floating cash flow
 std::vector<double> FloatingLeg::getLegCashFlows(std::vector<double> dayCountFractionVector) {
     std::vector<double> legCashFlows{};
-     for (int i = 0; i < dayCountFractionVector.size(); ++i) {
+    for (int i = 0; i < dayCountFractionVector.size(); ++i) {
 
-     }
+    }
     //for (auto currentFraction : dayCountFractionVector)
     //    legCashFlows.emplace_back(m_rate * currentFraction * m_notional);
 
@@ -38,5 +38,5 @@ double FloatingLeg::price() {
 }
 
 double FloatingLeg::estimate_price(double x) {
-    return 0;
+    return x;
 };

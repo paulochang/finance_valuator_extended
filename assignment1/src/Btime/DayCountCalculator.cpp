@@ -28,4 +28,4 @@ double Thirty_360::compute_daycount(const boost::gregorian::date &bfrom, const b
     return compute_daycount(years, months, from_date.day, to_date.day);
 }
 
-Thirty_360::Thirty_360() : DayCountCalculator(N_DAYS_THIRTY_360)  { };
+Thirty_360::Thirty_360() : DayCountCalculator(N_DAYS_THIRTY_360) {};

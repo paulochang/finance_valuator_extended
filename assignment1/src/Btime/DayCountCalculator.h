@@ -42,13 +42,8 @@ public:
         return nDaysYear;
     };
 
-    //Computa el numero de dias a partir de
-    double getDayRatio(const std::string &start_period, const std::string &end_period) const {
-        return compute_daycount(start_period, end_period)/getNDaysYear();
-    }
-
     double getDayRatio(const boost::gregorian::date &start_period, const boost::gregorian::date &end_period) const {
-        return compute_daycount(start_period, end_period)/getNDaysYear();
+        return compute_daycount(start_period, end_period) / getNDaysYear();
     }
 };
 
@@ -59,6 +54,7 @@ public:
 
     //Constructor.
     Actual_360();
+
     //Definicion del metodo privado para computar el numero de dias a partir de un objeto boos::gregorian::date
     double compute_daycount(const boost::gregorian::date &bfrom, const boost::gregorian::date &bto) const override;
 

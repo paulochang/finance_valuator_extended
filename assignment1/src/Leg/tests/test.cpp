@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
 
         std::vector<double> calculated_values = myLeg.getLegCashFlows(dayCountFractionVector);
 
-        double myResults[] = { 185.0/72 , 182.0/72, 182.0/72, 182.0/72};
+        double myResults[] = {185.0 / 72, 182.0 / 72, 182.0 / 72, 182.0 / 72};
         std::vector<double> expected_values(myResults, myResults + sizeof(myResults) / sizeof(double));
 
         //BOOST_TEST_MESSAGE(" - Calculated Value: " << calculated_values);
@@ -109,7 +109,8 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
 
         std::vector<double> calculated_values = myLeg.getDiscountFactors(totalDayCountFractionVector);
 
-        double myResults[] = {exp(-(185.0 / 360)*(4.74/100)), exp(-(367.0 / 360)*(5.0/100)), exp(-(549.0 / 360)*(5.1/100)), exp(-(731.0 / 360)*(5.2/100))};
+        double myResults[] = {exp(-(185.0 / 360) * (4.74 / 100)), exp(-(367.0 / 360) * (5.0 / 100)),
+                              exp(-(549.0 / 360) * (5.1 / 100)), exp(-(731.0 / 360) * (5.2 / 100))};
         std::vector<double> expected_values(myResults, myResults + sizeof(myResults) / sizeof(double));
 
         //BOOST_TEST_MESSAGE(" - Calculated Value: " << calculated_values);
@@ -145,14 +146,16 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
                                                                                 sizeof(totalDayCountFractions) /
                                                                                 sizeof(double));
 
-        double discountFactors[] = {exp(-(185.0 / 360)*(4.74/100)), exp(-(367.0 / 360)*(5.0/100)), exp(-(549.0 / 360)*(5.1/100)), exp(-(731.0 / 360)*(5.2/100))};
-        std::vector<double> discountFactorsVector(discountFactors, discountFactors + sizeof(discountFactors) / sizeof(double));
+        double discountFactors[] = {exp(-(185.0 / 360) * (4.74 / 100)), exp(-(367.0 / 360) * (5.0 / 100)),
+                                    exp(-(549.0 / 360) * (5.1 / 100)), exp(-(731.0 / 360) * (5.2 / 100))};
+        std::vector<double> discountFactorsVector(discountFactors,
+                                                  discountFactors + sizeof(discountFactors) / sizeof(double));
 
-        double cashFlows[] = { 185.0/72 , 182.0/72, 182.0/72, 182.0/72};
+        double cashFlows[] = {185.0 / 72, 182.0 / 72, 182.0 / 72, 182.0 / 72};
         std::vector<double> cashFlowsVector(cashFlows, cashFlows + sizeof(cashFlows) / sizeof(double));
 
         double calculated_value = myLeg.getDiscountedValue(discountFactorsVector, cashFlowsVector);
-        double theoretical_value =  9.522884368116582;
+        double theoretical_value = 9.522884368116582;
         //BOOST_TEST_MESSAGE(" - Calculated Value: " << calculated_values);
         //BOOST_TEST_MESSAGE(" - Expected Value: " << expected_values);
         BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-15));

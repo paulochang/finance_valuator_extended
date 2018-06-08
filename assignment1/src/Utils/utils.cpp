@@ -52,7 +52,8 @@ const double continuous_capitalization(double amount, double continuous_rate, do
     return result;
 }
 
-const double forward_rate(double zero_coupon_rate, double daycount_fraction, double previous_zcrate, double previous_dcf) {
+const double
+forward_rate(double zero_coupon_rate, double daycount_fraction, double previous_zcrate, double previous_dcf) {
     double diff_performance = zero_coupon_rate * daycount_fraction - previous_zcrate * previous_dcf;
     double diff_periods = daycount_fraction - previous_dcf;
     return diff_performance / diff_periods;
@@ -70,8 +71,8 @@ const std::vector<double> getTotalDayCountFractionVector(std::vector<double> day
     std::vector<double> totalDayCountFractionVector{};
     totalDayCountFractionVector.reserve(dayCountFractionVector.size() - 1);
     double cummulator = 0.0;
-    for (unsigned int i = 0; i < dayCountFractionVector.size(); i++) {
-        cummulator += dayCountFractionVector.at(i);
+    for (double i : dayCountFractionVector) {
+        cummulator += i;
         totalDayCountFractionVector.emplace_back(cummulator);
     }
 

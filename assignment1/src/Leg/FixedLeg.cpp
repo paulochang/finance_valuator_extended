@@ -8,7 +8,7 @@
  */
 
 
-std::vector<double> FixedLeg::getLegCashFlows(std::vector<double> dayCountFractionVector){
+std::vector<double> FixedLeg::getLegCashFlows(std::vector<double> dayCountFractionVector) {
     std::vector<double> legCashFlows{};
 
     legCashFlows.reserve(dayCountFractionVector.size());

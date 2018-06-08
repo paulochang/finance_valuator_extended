@@ -32,7 +32,7 @@ Leg::getDiscountedValue(std::vector<double> &legDiscountFactors,
     double totalDiscountedValue = 0.0;
 
     for (unsigned int i = 0; i < legDiscountFactors.size(); ++i) {
-        totalDiscountedValue += legCashFlows.at(i)*legDiscountFactors.at(i);
+        totalDiscountedValue += legCashFlows.at(i) * legDiscountFactors.at(i);
     }
     return totalDiscountedValue;
 }

@@ -40,8 +40,6 @@ public:
 
     double getRateFromDateString(boost::gregorian::date date) const;
 
-    double getRateFromDateString(std::string &date) const;
-
 };
 
 #endif
