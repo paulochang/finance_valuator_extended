@@ -32,7 +32,7 @@ double FloatingLeg::price() {
     std::vector<double> legCashFlows{getLegCashFlows(dayCountFractionVector)};
 
     //Sum up discounted cashflows
-    double totalDiscountedValue = getDiscountedValue(dayCountFractionVector, legDiscountFactors, legCashFlows);
+    double totalDiscountedValue = getDiscountedValue(legDiscountFactors, legCashFlows);
 
     return totalDiscountedValue;
 }

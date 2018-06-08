@@ -32,7 +32,7 @@ double FixedLeg::price() {
     std::vector<double> legDiscountFactors(getDiscountFactors(dayCountFractionVector));
 
     //Sum up discounted cashflows
-    double totalDiscountedValue = getDiscountedValue(dayCountFractionVector, legDiscountFactors, legCashFlows);
+    double totalDiscountedValue = getDiscountedValue(legDiscountFactors, legCashFlows);
 
     return totalDiscountedValue;
 }
@@ -50,7 +50,7 @@ double FixedLeg::estimate_price(double interestRate) {
     std::vector<double> legDiscountFactors(getDiscountFactors(dayCountFractionVector));
 
     //Sum up discounted cashflows
-    double totalDiscountedValue = getDiscountedValue(dayCountFractionVector, legDiscountFactors, legCashFlows);
+    double totalDiscountedValue = getDiscountedValue(legDiscountFactors, legCashFlows);
 
     return totalDiscountedValue;
 };

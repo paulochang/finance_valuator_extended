@@ -59,7 +59,7 @@ public:
     const std::vector<double> getDiscountFactors(std::vector<double> dayCountFractionVector) const;
 
     const double
-    getDiscountedValue(std::vector<double> &dayCountFractionVector, std::vector<double> &legDiscountFactors,
+    getDiscountedValue(std::vector<double> &legDiscountFactors,
                        std::vector<double> &legCashFlows) const;
 };
 

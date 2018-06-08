@@ -27,15 +27,12 @@ const std::vector<double> Leg::getDiscountFactors(std::vector<double> totalDayCo
 }
 
 const double
-Leg::getDiscountedValue(std::vector<double> &dayCountFractionVector, std::vector<double> &legDiscountFactors,
+Leg::getDiscountedValue(std::vector<double> &legDiscountFactors,
                         std::vector<double> &legCashFlows) const {
     double totalDiscountedValue = 0.0;
-    double currentPeriodFraction = 0.0;
 
-    for (unsigned int i = 0; i < dayCountFractionVector.size(); ++i) {
-        currentPeriodFraction += dayCountFractionVector.at(i);
-        totalDiscountedValue += discount_continuously(legCashFlows.at(i), legDiscountFactors.at(i),
-                                                      currentPeriodFraction);
+    for (unsigned int i = 0; i < legDiscountFactors.size(); ++i) {
+        totalDiscountedValue += legCashFlows.at(i)*legDiscountFactors.at(i);
     }
     return totalDiscountedValue;
 }
