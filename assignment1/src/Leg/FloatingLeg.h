@@ -26,7 +26,6 @@ public:
 
     std::vector<double> getLegCashFlows(std::vector<double> dayCountFractionVector) override;
 
-    double estimate_price(double x) override;
 };
 
 #endif //SQF_FLOATINGLEG_H

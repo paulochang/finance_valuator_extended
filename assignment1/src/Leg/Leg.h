@@ -50,8 +50,6 @@ public:
     //Metodo abstracto para calcular el precio de una pata
     virtual double price() = 0;
 
-    virtual double estimate_price(double x) = 0;
-
     /// Retrieves a vector with the day count fractions between payments
     /// \return the vector with the day count fractions
     const std::vector<double> getDayCountFractionVector() const;

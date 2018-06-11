@@ -36,7 +36,3 @@ double FloatingLeg::price() {
 
     return totalDiscountedValue;
 }
-
-double FloatingLeg::estimate_price(double x) {
-    return x;
-};

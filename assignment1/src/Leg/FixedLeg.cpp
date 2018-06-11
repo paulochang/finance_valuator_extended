@@ -36,21 +36,3 @@ double FixedLeg::price() {
 
     return totalDiscountedValue;
 }
-
-double FixedLeg::estimate_price(double interestRate) {
-    //Generate day count fraction vector
-    std::vector<double> dayCountFractionVector{getDayCountFractionVector()};
-
-    std::vector<double> legCashFlows{};
-    legCashFlows.reserve(dayCountFractionVector.size());
-    for (auto currentFraction : dayCountFractionVector)
-        legCashFlows.emplace_back(interestRate * currentFraction * m_notional);
-
-    //Calculate discount factors
-    std::vector<double> legDiscountFactors(getDiscountFactors(dayCountFractionVector));
-
-    //Sum up discounted cashflows
-    double totalDiscountedValue = getDiscountedValue(legDiscountFactors, legCashFlows);
-
-    return totalDiscountedValue;
-};
