@@ -13,5 +13,3 @@ double ZeroCouponCurve::getRateFromDateString(boost::gregorian::date date) const
     }
     return NAN;
 }
-
-}
