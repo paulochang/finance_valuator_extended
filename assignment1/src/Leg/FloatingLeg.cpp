@@ -19,20 +19,3 @@ std::vector<double> FloatingLeg::getLegCashFlows(std::vector<double> dayCountFra
 
     return legCashFlows;
 }
-
-//Clase FixedLeg
-double FloatingLeg::price() {
-    //Generate day count fraction vector
-    std::vector<double> dayCountFractionVector{getDayCountFractionVector()};
-
-    //Calculate the discount factors
-    std::vector<double> legDiscountFactors(getDiscountFactors(dayCountFractionVector));
-
-    //Calculate the legCashFlows
-    std::vector<double> legCashFlows{getLegCashFlows(dayCountFractionVector)};
-
-    //Sum up discounted cashflows
-    double totalDiscountedValue = getDiscountedValue(legDiscountFactors, legCashFlows);
-
-    return totalDiscountedValue;
-}

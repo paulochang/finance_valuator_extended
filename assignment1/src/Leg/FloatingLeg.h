@@ -21,9 +21,6 @@ public:
         m_index = std::move(index);
     }
 
-    //Metodo para calcular el precio en un pata fija
-    double price() override;
-
     std::vector<double> getLegCashFlows(std::vector<double> dayCountFractionVector) override;
 
 };

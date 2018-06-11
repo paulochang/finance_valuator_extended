@@ -48,7 +48,7 @@ public:
     virtual ~Leg();
 
     //Metodo abstracto para calcular el precio de una pata
-    virtual double price() = 0;
+    const double price();
 
     /// Retrieves a vector with the day count fractions between payments
     /// \return the vector with the day count fractions

@@ -1,1 +1,1 @@
-create_library(NAME Instrument)
+create_library(NAME instrument DEPS leg)

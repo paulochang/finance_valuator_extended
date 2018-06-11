@@ -17,22 +17,3 @@ std::vector<double> FixedLeg::getLegCashFlows(std::vector<double> dayCountFracti
     return legCashFlows;
 }
 
-//Clase FixedLeg
-double FixedLeg::price() {
-
-    // TESTED
-    //Generate day count fraction vector
-    std::vector<double> dayCountFractionVector{getDayCountFractionVector()};
-
-    // TESTED
-    //Calculate the legCashFlows
-    std::vector<double> legCashFlows{getLegCashFlows(dayCountFractionVector)};
-
-    //Calculate discount factors
-    std::vector<double> legDiscountFactors(getDiscountFactors(dayCountFractionVector));
-
-    //Sum up discounted cashflows
-    double totalDiscountedValue = getDiscountedValue(legDiscountFactors, legCashFlows);
-
-    return totalDiscountedValue;
-}

@@ -19,9 +19,6 @@ public:
             :
             Leg(notional, rate, std::move(referenceDates), dayCalculator, zeroCouponCurve) {}
 
-    //Metodo para calcular el precio en un pata fija
-    double price() override;
-
     std::vector<double> getLegCashFlows(std::vector<double> dayCountFractionVector) override;
 };
 
