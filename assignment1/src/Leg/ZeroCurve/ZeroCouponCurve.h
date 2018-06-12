@@ -38,7 +38,7 @@ public:
 
     //Obtiene un tipo de interes a partir de la fech
 
-    double getRateFromDateString(boost::gregorian::date date) const;
+    double getRateFromDate(boost::gregorian::date date) const;
 
 };
 
