@@ -19,7 +19,7 @@ const std::vector<double> Leg::getDiscountFactors(std::vector<double> totalDayCo
     discountFactors.reserve(totalDayCountFractionVector.size());
     for (unsigned int i = 1; i <= totalDayCountFractionVector.size(); ++i) {
         discountFactors.emplace_back(continuous_discount_factor(
-                m_zeroCouponCurve.getRateFromDateString(m_payingDates.at(i)),
+                m_zeroCouponCurve.getRateFromDate(m_payingDates.at(i)),
                 totalDayCountFractionVector.at(i - 1)));
     }
 
@@ -47,8 +47,10 @@ const double Leg::price() {
     //Calculate the legCashFlows
     std::vector<double> legCashFlows{getLegCashFlows(dayCountFractionVector)};
 
+    std::vector<double> totalDayCountFractionVector{getTotalDayCountFractionVector(dayCountFractionVector)};
+
     //Calculate discount factors
-    std::vector<double> legDiscountFactors(getDiscountFactors(dayCountFractionVector));
+    std::vector<double> legDiscountFactors{getDiscountFactors(totalDayCountFractionVector)};
 
     //Sum up discounted cashflows
     double totalDiscountedValue = getDiscountedValue(legDiscountFactors, legCashFlows);

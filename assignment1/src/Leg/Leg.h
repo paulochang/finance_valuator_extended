@@ -42,7 +42,9 @@ public:
     Leg(double notional, double rate, std::vector<boost::gregorian::date> referenceDates,
         DayCountCalculator &dayCalculator, ZeroCouponCurve &zeroCouponCurve) :
             m_notional{notional}, m_rate{rate}, m_payingDates{std::move(referenceDates)},
-            m_dayCalculator{dayCalculator}, m_zeroCouponCurve{zeroCouponCurve} {}
+            m_dayCalculator{dayCalculator}, m_zeroCouponCurve{zeroCouponCurve} {
+        std::sort(m_payingDates.begin(), m_payingDates.end());
+    }
 
     //Destructor
     virtual ~Leg();
@@ -54,7 +56,7 @@ public:
     /// \return the vector with the day count fractions
     const std::vector<double> getDayCountFractionVector() const;
 
-    const std::vector<double> getDiscountFactors(std::vector<double> dayCountFractionVector) const;
+    const std::vector<double> getDiscountFactors(std::vector<double> totalDayCountFractionVector) const;
 
     const double
     getDiscountedValue(std::vector<double> &legDiscountFactors,
