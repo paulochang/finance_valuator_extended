@@ -191,7 +191,6 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
         BOOST_TEST_MESSAGE("using tolerances within checks.");
 
         const double notional = 100;
-        const double rate = 5.0 / 100;
         const int periodsPerYear = 2;
         std::vector<boost::gregorian::date> referenceDates{};
         referenceDates.push_back(boost::gregorian::from_string("2016-04-01"));
@@ -209,7 +208,7 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
         m_mapZeroRates[boost::gregorian::from_string("2018-04-02")] = 0.052;
         ZeroCouponCurve zeroCouponCurve{m_mapZeroRates};
 
-        FloatingLeg myLeg{notional, rate, referenceDates, actualCalc, zeroCouponCurve, periodsPerYear};
+        FloatingLeg myLeg{notional, referenceDates, actualCalc, zeroCouponCurve, periodsPerYear};
         double totalDayCountFractions[] = {185.0 / 360, 367.0 / 360, 549.0 / 360, 731.0 / 360};
         std::vector<double> totalDayCountFractionVector(totalDayCountFractions, totalDayCountFractions +
                                                                                 sizeof(totalDayCountFractions) /
@@ -228,7 +227,6 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
         BOOST_TEST_MESSAGE("using tolerances within checks.");
 
         const double notional = 100;
-        const double rate = 5.0 / 100;
         const int periodsPerYear = 2;
         std::vector<boost::gregorian::date> referenceDates{};
         referenceDates.push_back(boost::gregorian::from_string("2016-04-01"));
@@ -246,7 +244,7 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
         m_mapZeroRates[boost::gregorian::from_string("2018-04-02")] = 0.052;
         ZeroCouponCurve zeroCouponCurve{m_mapZeroRates};
 
-        FloatingLeg myLeg{notional, rate, referenceDates, actualCalc, zeroCouponCurve, periodsPerYear};
+        FloatingLeg myLeg{notional, referenceDates, actualCalc, zeroCouponCurve, periodsPerYear};
         double forwardRates[] = {0.04743305323463213, (0.05 * 367 - 0.04743305323463213 * 185) / 182,
                                  (0.051 * 549 - 0.05 * 367) / 182,
                                  (0.052 * 731 - 0.051 * 549) / 182};
@@ -265,7 +263,6 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
         BOOST_TEST_MESSAGE("using tolerances within checks.");
 
         const double notional = 100;
-        const double rate = 5.0 / 100;
         const int periodsPerYear = 2;
         std::vector<boost::gregorian::date> referenceDates{};
         referenceDates.push_back(boost::gregorian::from_string("2016-04-01"));
@@ -283,7 +280,7 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
         m_mapZeroRates[boost::gregorian::from_string("2018-04-02")] = 0.052;
         ZeroCouponCurve zeroCouponCurve{m_mapZeroRates};
 
-        FloatingLeg myLeg{notional, rate, referenceDates, actualCalc, zeroCouponCurve, periodsPerYear};
+        FloatingLeg myLeg{notional, referenceDates, actualCalc, zeroCouponCurve, periodsPerYear};
 
         double myDoubles[] = {185.0 / 360, 182.0 / 360, 182.0 / 360, 182.0 / 360};
         std::vector<double> dayCountFractionVector(myDoubles, myDoubles + sizeof(myDoubles) / sizeof(double));
@@ -302,7 +299,6 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
         BOOST_TEST_MESSAGE("using tolerances within checks.");
 
         const double notional = 100;
-        const double rate = 5.0 / 100;
         const int periodsPerYear = 2;
         std::vector<boost::gregorian::date> referenceDates{};
         referenceDates.push_back(boost::gregorian::from_string("2016-04-01"));
@@ -320,7 +316,7 @@ BOOST_AUTO_TEST_SUITE(leg_test_suite)
         m_mapZeroRates[boost::gregorian::from_string("2018-04-02")] = 0.052;
         ZeroCouponCurve zeroCouponCurve{m_mapZeroRates};
 
-        FloatingLeg myLeg{notional, rate, referenceDates, actualCalc, zeroCouponCurve, periodsPerYear};
+        FloatingLeg myLeg{notional, referenceDates, actualCalc, zeroCouponCurve, periodsPerYear};
 
         double calculated_value = myLeg.price();
         double theoretical_value = 10.0186177149427;
