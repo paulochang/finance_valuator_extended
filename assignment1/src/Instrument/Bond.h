@@ -11,9 +11,9 @@
 class Bond : public Instrument {
 public:
 
-    double price();
+    double price() const override;
 
-    Bond(FixedLeg *Receiver) : Instrument(Receiver) {}
+    Bond(FixedLeg &Receiver) : Instrument(Receiver) {}
 
 };
 

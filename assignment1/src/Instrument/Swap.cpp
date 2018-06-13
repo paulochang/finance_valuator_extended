@@ -1,8 +1,8 @@
 #include "Swap.h"
 
 
-double Swap::price() {
+double Swap::price() const {
 
-    return this->theReceiver->price() - this->thePayer->price();
+    return theReceiver.price() - thePayer.price();
 
 }

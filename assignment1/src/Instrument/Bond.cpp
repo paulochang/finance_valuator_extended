@@ -1,9 +1,9 @@
 #include "Bond.h"
 
 
-double Bond::price() {
+double Bond::price() const {
 
-    return this->theReceiver->price();
+    return theReceiver.price();
 
 }
 	

@@ -10,13 +10,12 @@
 class Swap : public Instrument {
 public:
 
-    Leg *thePayer;
+    Leg &thePayer;
 
-    double price();
+    double price() const override;
 
-    Swap(Leg *Receiver, Leg *Payer) : Instrument(Receiver) {
-        thePayer = Payer;
-    }
+    Swap(Leg &Receiver, Leg &Payer) : Instrument(Receiver),
+                                      thePayer{Payer} {}
 };
 
 
