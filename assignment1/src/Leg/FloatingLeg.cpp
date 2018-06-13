@@ -10,8 +10,15 @@
 
 std::vector<double> FloatingLeg::getLegCashFlows(std::vector<double> dayCountFractionVector) {
     std::vector<double> legCashFlows{};
-    for (int i = 0; i < dayCountFractionVector.size(); ++i) {
+    std::vector<double> totalDayCountFractionVector{getTotalDayCountFractionVector(dayCountFractionVector)};
+    std::vector<double> forwardRatesVector{getForwardRatesVector(totalDayCountFractionVector)};
+    std::vector<double> discreteFwdRatesVector{getDiscreteFwdRatesVector(forwardRatesVector)};
+    legCashFlows.reserve(dayCountFractionVector.size());
+
+    for (int j = 0; j < dayCountFractionVector.size(); ++j) {
+        legCashFlows.emplace_back(discreteFwdRatesVector.at(j) * dayCountFractionVector.at(j) * m_notional);
     }
+
     return legCashFlows;
 }
 
