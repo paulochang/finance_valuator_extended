@@ -25,6 +25,8 @@ public:
 
     std::vector<double> getForwardRatesVector(std::vector<double> totalDayCountFractionVector);
 
+    std::vector<double> getDiscreteFwdRatesVector(std::vector<double> forwardRatesVector);
+
 };
 
 #endif //SQF_FLOATINGLEG_H

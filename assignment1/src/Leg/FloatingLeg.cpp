@@ -37,3 +37,12 @@ std::vector<double> FloatingLeg::getForwardRatesVector(std::vector<double> total
 
     return forwardRatesVector;
 }
+
+std::vector<double> FloatingLeg::getDiscreteFwdRatesVector(std::vector<double> forwardRatesVector) {
+    std::vector<double> discreteFwdRatesVector{};
+    discreteFwdRatesVector.reserve(forwardRatesVector.size());
+    for (auto rate : forwardRatesVector) {
+        discreteFwdRatesVector.emplace_back(continuous_to_annual_rate(periodsPerYear, rate));
+    }
+    return discreteFwdRatesVector;
+}
