@@ -16,4 +16,5 @@ public:
     Instrument(Leg *receiver) : theReceiver{receiver} {}
 
 };
+
 #endif

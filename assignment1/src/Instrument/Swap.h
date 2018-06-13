@@ -6,6 +6,7 @@
 #define SQF_SWAP_H
 
 #include "Instrument.h"
+
 class Swap : public Instrument {
 public:
 

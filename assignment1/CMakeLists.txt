@@ -1,6 +1,6 @@
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required(VERSION 3.0)
 
-project (sqf)
+project(sqf)
 
 # 1. Define some well-known folders:
 # - Place for compile binaries
@@ -8,7 +8,7 @@ set(CMAKE_BINARY_DIR ${PROJECT_SOURCE_DIR}/build)
 # - Root for include files
 set(INCLUDE_HOME ${PROJECT_SOURCE_DIR}/src)
 # - In-house cmake functions
-set (CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake-lib)
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake-lib)
 # - set boost home
 set(BOOST_ROOT ~/clibraries/boost_1_65_1)
 #set(BOOST_ROOT ~/Desktop/boost/boost_1_63_0)
@@ -33,7 +33,7 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(PROJECT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 
 # - C++ file filter for adding files in cmake's projects
-set(CXX_FILE_EXTENSIONS "*.h"  "*.cpp")
+set(CXX_FILE_EXTENSIONS "*.h" "*.cpp")
 
 # 4. Set Compilation environment
 include_directories(${INCLUDE_HOME})
