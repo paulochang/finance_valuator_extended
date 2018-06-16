@@ -30,7 +30,7 @@
 *.exe
 *.out
 *.app
-assignment1/build/
-assignment1/cmake-build-debug/
+assignment/build/
+assignment/cmake-build-debug/
 .idea/
 
