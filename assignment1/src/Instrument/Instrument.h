@@ -11,9 +11,7 @@ class Instrument {
 public:
     virtual double price() const = 0;
 
-    Leg &theReceiver;
-
-    Instrument(Leg &receiver) : theReceiver{receiver} {}
+    Instrument() {}
 
 };
 

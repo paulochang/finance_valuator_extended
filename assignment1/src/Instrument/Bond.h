@@ -10,11 +10,12 @@
 
 class Bond : public Instrument {
 public:
+    Leg &theReceiver;
 
     double price() const override;
 
-    Bond(FixedLeg &Receiver) : Instrument(Receiver) {}
-
+    Bond(Leg &Receiver) : Instrument(),
+                          theReceiver{Receiver} {}
 };
 
 #endif //SQF_BOND_H
