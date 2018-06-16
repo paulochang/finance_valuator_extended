@@ -32,3 +32,5 @@
 *.app
 assignment1/build/
 assignment1/cmake-build-debug/
+.idea/
+
