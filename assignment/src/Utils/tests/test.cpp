@@ -2,6 +2,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <Utils/utils.h>
+#include <Utils/bshelper.h>
 
 namespace utf = boost::unit_test;
 
@@ -179,5 +180,80 @@ BOOST_AUTO_TEST_SUITE(utils_boost)
 
     }
 
+    BOOST_AUTO_TEST_CASE(black_scholes_d1) {
+        BOOST_TEST_MESSAGE("Testing black_scholes_d1");
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
+
+        double asset_price = 50.0;
+        double strike = 50.0;
+        double rate = 3.66 / 100;
+        double volatility = 62.0 / 100;
+        double time_to_maturity = 5.0;
+
+        double theoretical_value = 0.8251812; // (e^0.1)-1
+
+        auto calculated_value = d1(asset_price, strike, rate, volatility, time_to_maturity);
+
+        BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
+        BOOST_TEST_MESSAGE(" - known_d1_value: " << theoretical_value);
+        BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
+        BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-7));
+    }
+
+    BOOST_AUTO_TEST_CASE(black_scholes_d2) {
+        BOOST_TEST_MESSAGE("Testing black_scholes_d1");
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
+
+        double asset_price = 50.0;
+        double strike = 50.0;
+        double rate = 3.66 / 100;
+        double volatility = 62.0 / 100;
+        double time_to_maturity = 5.0;
+
+        double theoretical_value = -0.5611809; // (e^0.1)-1
+
+        auto calculated_value = d2(asset_price, strike, rate, volatility, time_to_maturity);
+
+        BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
+        BOOST_TEST_MESSAGE(" - known_d2_value: " << theoretical_value);
+        BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
+        BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-7));
+    }
+
+    BOOST_AUTO_TEST_CASE(black_scholes_weightAsset) {
+        BOOST_TEST_MESSAGE("Testing black_scholes_d1");
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
+
+        double asset_price = 50.0;
+        double option_d1 = 0.8251812; //pre-calculated value
+
+        double theoretical_value = 39.7682821; // (e^0.1)-1
+
+        auto calculated_value = weightAsset(asset_price, option_d1);
+
+        BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
+        BOOST_TEST_MESSAGE(" - known_asset_contribution: " << theoretical_value);
+        BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
+        BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-7));
+    }
+
+    BOOST_AUTO_TEST_CASE(black_scholes_weightStrike) {
+        BOOST_TEST_MESSAGE("Testing black_scholes_d1");
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
+
+        double strike = 50.0;
+        double rate = 3.66 / 100;
+        double time_to_maturity = 5.0;
+        double option_d2 = -0.5611809; //pre-calculated value
+
+        double theoretical_value = 11.9642594; // (e^0.1)-1
+
+        auto calculated_value = weightStrike(strike, option_d2, rate, time_to_maturity);
+
+        BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
+        BOOST_TEST_MESSAGE(" - known_asset_contribution: " << theoretical_value);
+        BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
+        BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-7));
+    }
 
 BOOST_AUTO_TEST_SUITE_END()
