@@ -192,7 +192,7 @@ BOOST_AUTO_TEST_SUITE(utils_boost)
 
         double theoretical_value = 0.8251812; // (e^0.1)-1
 
-        auto calculated_value = d1(asset_price, strike, rate, volatility, time_to_maturity);
+        auto calculated_value = getD1(asset_price, strike, rate, volatility, time_to_maturity);
 
         BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
         BOOST_TEST_MESSAGE(" - known_d1_value: " << theoretical_value);
@@ -201,7 +201,7 @@ BOOST_AUTO_TEST_SUITE(utils_boost)
     }
 
     BOOST_AUTO_TEST_CASE(black_scholes_d2) {
-        BOOST_TEST_MESSAGE("Testing black_scholes_d1");
+        BOOST_TEST_MESSAGE("Testing black_scholes_d2");
         BOOST_TEST_MESSAGE("using tolerances within checks.");
 
         double asset_price = 50.0;
@@ -212,7 +212,7 @@ BOOST_AUTO_TEST_SUITE(utils_boost)
 
         double theoretical_value = -0.5611809; // (e^0.1)-1
 
-        auto calculated_value = d2(asset_price, strike, rate, volatility, time_to_maturity);
+        auto calculated_value = getD2(asset_price, strike, rate, volatility, time_to_maturity);
 
         BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
         BOOST_TEST_MESSAGE(" - known_d2_value: " << theoretical_value);
@@ -221,7 +221,7 @@ BOOST_AUTO_TEST_SUITE(utils_boost)
     }
 
     BOOST_AUTO_TEST_CASE(black_scholes_weightAsset) {
-        BOOST_TEST_MESSAGE("Testing black_scholes_d1");
+        BOOST_TEST_MESSAGE("Testing black_scholes_weightAsset");
         BOOST_TEST_MESSAGE("using tolerances within checks.");
 
         double asset_price = 50.0;
@@ -238,7 +238,7 @@ BOOST_AUTO_TEST_SUITE(utils_boost)
     }
 
     BOOST_AUTO_TEST_CASE(black_scholes_weightStrike) {
-        BOOST_TEST_MESSAGE("Testing black_scholes_d1");
+        BOOST_TEST_MESSAGE("Testing black_scholes_weightStrike");
         BOOST_TEST_MESSAGE("using tolerances within checks.");
 
         double strike = 50.0;
@@ -254,6 +254,88 @@ BOOST_AUTO_TEST_SUITE(utils_boost)
         BOOST_TEST_MESSAGE(" - known_asset_contribution: " << theoretical_value);
         BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
         BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-7));
+    }
+
+    BOOST_AUTO_TEST_CASE(black_scholes_evaluateCall) {
+        BOOST_TEST_MESSAGE("Testing black_scholes_evaluateCall");
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
+
+        double option_strike = 50.0;
+        double time_to_maturity = 5.0;
+        double rate = 3.66 / 100;
+        double volatility = 62.0 / 100;
+        double asset_price = 50.0;
+
+        double theoretical_value = 27.804023; // (e^0.1)-1
+
+        auto calculated_value = evaluateCall(option_strike, time_to_maturity, rate, volatility, asset_price);
+
+        BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
+        BOOST_TEST_MESSAGE(" - known_asset_contribution: " << theoretical_value);
+        BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
+        BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-6));
+    }
+
+    BOOST_AUTO_TEST_CASE(black_scholes_evaluatePut) {
+        BOOST_TEST_MESSAGE("Testing black_scholes_evaluatePut");
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
+
+        double option_strike = 50.0;
+        double time_to_maturity = 5.0;
+        double rate = 3.66 / 100;
+        double volatility = 62.0 / 100;
+        double asset_price = 50.0;
+
+        double theoretical_value = 19.442431; // (e^0.1)-1
+
+        auto calculated_value = evaluatePut(option_strike, time_to_maturity, rate, volatility, asset_price);
+
+        BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
+        BOOST_TEST_MESSAGE(" - known_asset_contribution: " << theoretical_value);
+        BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
+        BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-6));
+    }
+
+    BOOST_AUTO_TEST_CASE(black_scholes_blackScholesCall) {
+        BOOST_TEST_MESSAGE("Testing black_scholes_blackScholesCall");
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
+
+        double option_strike = 50.0;
+        double time_to_maturity = 5.0;
+        double rate = 3.66 / 100;
+        double volatility = 62.0 / 100;
+        double asset_price = 50.0;
+
+
+        double theoretical_value = 27.804023; // (e^0.1)-1
+
+        auto calculated_value = blackScholes(call, option_strike, time_to_maturity, rate, volatility, asset_price);
+
+        BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
+        BOOST_TEST_MESSAGE(" - known_asset_contribution: " << theoretical_value);
+        BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
+        BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-6));
+    }
+
+    BOOST_AUTO_TEST_CASE(black_scholes_blackScholesPut) {
+        BOOST_TEST_MESSAGE("Testing black_scholes_blackScholesPut");
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
+
+        double option_strike = 50.0;
+        double time_to_maturity = 5.0;
+        double rate = 3.66 / 100;
+        double volatility = 62.0 / 100;
+        double asset_price = 50.0;
+
+
+        double theoretical_value = 19.442431; // (e^0.1)-1
+
+        auto calculated_value = blackScholes(put, option_strike, time_to_maturity, rate, volatility, asset_price);
+
+        BOOST_TEST_MESSAGE(" - calculated_value: " << calculated_value);
+        BOOST_TEST_MESSAGE(" - known_asset_contribution: " << theoretical_value);
+        BOOST_TEST_MESSAGE(" - diff " << calculated_value - theoretical_value);
+        BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-6));
     }
 
 BOOST_AUTO_TEST_SUITE_END()
