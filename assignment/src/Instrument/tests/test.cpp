@@ -2,7 +2,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <Leg/FloatingLeg.h>
-#include "Instrument/Instrument.h"
+#include <Instrument/Asset.h>
 #include "Instrument/Bond.h"
 #include "Instrument/Swap.h"
 
@@ -70,6 +70,36 @@ BOOST_AUTO_TEST_SUITE(instrument_test_suite)
         double theoretical_value = 495775.94;
         //BOOST_TEST_MESSAGE(" - Calculated Value: " << calculated_values);
         //BOOST_TEST_MESSAGE(" - Expected Value: " << expected_values);
+        BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-2));
+    }
+
+    BOOST_AUTO_TEST_CASE(asset_getVolatility) {
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
+
+
+        const double spot_price = 50.0;
+        double volatility = 62.0 / 100;
+
+        Asset underlyingAsset{spot_price, volatility};
+
+        double calculated_value = underlyingAsset.getVolatility();
+        double theoretical_value = 0.62;
+
+        BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-2));
+    }
+
+    BOOST_AUTO_TEST_CASE(asset_getPrice) {
+        BOOST_TEST_MESSAGE("using tolerances within checks.");
+
+
+        const double spot_price = 50.0;
+        double volatility = 62.0 / 100;
+
+        Asset underlyingAsset{spot_price, volatility};
+
+        double calculated_value = underlyingAsset.price();
+        double theoretical_value = 50.0;
+
         BOOST_TEST(theoretical_value == calculated_value, boost::test_tools::tolerance(1e-2));
     }
 
