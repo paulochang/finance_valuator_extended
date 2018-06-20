@@ -11,7 +11,7 @@ class Instrument {
 public:
     virtual double price() const = 0;
 
-    Instrument() {}
+    Instrument() = default;
 
 };
 

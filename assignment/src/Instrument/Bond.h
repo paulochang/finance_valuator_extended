@@ -14,8 +14,8 @@ public:
 
     double price() const override;
 
-    Bond(Leg &Receiver) : Instrument(),
-                          theReceiver{Receiver} {}
+    explicit Bond(Leg &Receiver) : Instrument(),
+                                   theReceiver{Receiver} {}
 };
 
 #endif //SQF_BOND_H
