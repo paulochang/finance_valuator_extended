@@ -12,6 +12,14 @@ Actual_360::compute_daycount(const boost::gregorian::date &bfrom, const boost::g
 
 Actual_360::Actual_360() : DayCountCalculator(N_DAYS_ACTUAL_360) {}
 
+//Actual_365 - compute_daycount_boost(bfrom, bto)
+double
+Actual_365::compute_daycount(const boost::gregorian::date &bfrom, const boost::gregorian::date &bto) const {
+    return (bto - bfrom).days();
+}
+
+Actual_365::Actual_365() : DayCountCalculator(N_DAYS_ACTUAL_365) {}
+
 
 //Thirty_360 - compute_daycount_1(years, months, days_from, days_to)
 double Thirty_360::compute_daycount(const short years, const short months, const short days_from,
