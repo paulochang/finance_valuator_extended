@@ -15,7 +15,7 @@ std::vector<double> FloatingLeg::getLegCashFlows(std::vector<double> dayCountFra
     std::vector<double> discreteFwdRatesVector{getDiscreteFwdRatesVector(forwardRatesVector)};
     legCashFlows.reserve(dayCountFractionVector.size());
 
-    for (int j = 0; j < dayCountFractionVector.size(); ++j) {
+    for (unsigned int j = 0; j < dayCountFractionVector.size(); ++j) {
         legCashFlows.emplace_back(discreteFwdRatesVector.at(j) * dayCountFractionVector.at(j) * m_notional);
     }
 
