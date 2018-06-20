@@ -15,8 +15,6 @@
 
 class ZeroCouponCurve {
 private:
-
-    boost::gregorian::date m_startDate;
     //Mapa que contiene los tipos de interes agrupados por fecha
     std::map<boost::gregorian::date, double> m_mapZeroRates{};
 
