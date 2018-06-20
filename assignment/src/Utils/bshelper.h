@@ -4,6 +4,7 @@
 enum OptionType {
     call, put
 };
+
 /// Computes the d1 or d+ component of the option's black-scholes pricing model
 /// \param asset_price The underlying asset's price
 /// \param strike The option strike price if the exercise is completed.

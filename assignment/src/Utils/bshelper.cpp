@@ -62,4 +62,5 @@ blackScholes(enum OptionType option_type, double option_strike, double time_to_m
         case put:
             return evaluatePut(option_strike, time_to_maturity, rate, volatility, asset_price);
     }
+    return 0;
 }
